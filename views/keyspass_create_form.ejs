@@ -1,0 +1,21 @@
+
+<h1 id="page-title"><%= title %></h1>
+
+<div id="list">
+	<form action="/keyspass/create" method="post" accept-charset="utf-8">
+		<div class="item-new">
+			<textarea class="input" type="text" name="content"></textarea>
+			<input type="submit">
+		</div>
+	</form>
+	
+	<% sq.forEach( function ( sq ){ %>
+		<div class="item">
+			<a class="update-link" href="/keyspass/edit/<%= sq._id %>" title="Update this sq item"><%= sq.question %></a>
+			<a class="del-btn" href="/keyspass/create/<%= sq._id %>" title="Answer this sq item">Answer</a>
+			&nbsp;
+			<a class="del-btn" href="/keyspass/destroy/<%= sq._id %>" title="Delete this sq item">Delete</a>
+		</div>
+	<% }); %>
+</div>
+

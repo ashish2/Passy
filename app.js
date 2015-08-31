@@ -16,6 +16,9 @@ secretquestion = require("."+sources+"/secretquestion");
 secretanswer = require("."+sources+"/secretanswer");
 keyspass = require("."+sources+"/keyspass");
 
+// api module
+api = require("."+sources+"/api");
+
 var http = require('http');
 var path = require('path');
 
@@ -47,6 +50,9 @@ if ('development' == app.get('env')) {
 require("./routelist");
 
 http.createServer(app).listen(app.get('port'), function(){
+	console.log("api");
+	console.log(api);
+
 	console.log('Express server listening on port ' + app.get('port'));
 });
 

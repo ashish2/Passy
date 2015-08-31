@@ -2,7 +2,7 @@
 /*
  * GET users listing.
  */
-var utils = require("../utils");
+var utils = require("../../utils");
 var mongoose = require("mongoose");
 
 var SecretQuestion = mongoose.model("SecretQuestion");
@@ -14,14 +14,12 @@ var KeysPass = mongoose.model("KeysPass");
 // then check answers
 // if all answers are right, then,
 // redirect to, the list of all key passes.
-exports.index = function(req, res, next){
-	var user_id = req.cookies ? req.cookies.user_id : undefined;
-	res.render( "keyspass_index");	
-};
+// exports.index = function(req, res, next){
+// 	var user_id = req.cookies ? req.cookies.user_id : undefined;
+// 	res.render( "keyspass_index");	
+// };
 
-// Run mainindex at "/" if not using Anglar and want to show the view directly
-// So put route in routelist for "/" as mainindex
-exports.mainindex = function(req, res, next){
+exports.index = function(req, res, next){
 	var user_id = req.cookies ? req.cookies.user_id : undefined;
 	
 	// Search SecretAnswers of user_id where question_id = req.questions[id]
@@ -62,10 +60,24 @@ exports.mainindex = function(req, res, next){
 		};
 
 		// To send data to index
-		res.render( "keyspass_index", data);
+		// res.render( "keyspass_index", data);
+
+		// data = JSON.stringify(data);
+
+		// res.set("Content-Type", "text/html");
+
+		// res.setHeader("Access-Control-Allow-Origin", "*");
+		// res.render( "json_data", data);
+		// res.end(JSON.stringify(data));
+		// res.render( "json_data", data);
+		res.json(data);
+
+		// To send data just as json string for API
+		// data = JSON.stringify(data);
+		// res.set('Content-Type', 'text/html');
+		// res.render( "json_data", data);
+
 	});
-	
-	
 };
 
 // Method: Check

@@ -1,5 +1,6 @@
-// App routes function to go to
 
+/* MAIN ROUTES */
+// App routes function to go to
 // Todo
 app.post("/create", routes.create );
 app.get("/destroy/:id", routes.destroy);
@@ -31,6 +32,13 @@ app.post("/keyspass/check", keyspass.check);
 app.post("/keyspass/create", keyspass.create);
 // Showing all keys pass of a user
 app.get("/keyspass/show", keyspass.show);
+/* MAIN ROUTES- */
+
+
+/* API ROUTES */
+app.get('/api/index', api.api_keyspass.index);
+
+/* API ROUTES- */
 
 // Default
 app.get('/', keyspass.index);

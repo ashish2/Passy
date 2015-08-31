@@ -2,7 +2,8 @@
 <head>
 	<link rel="stylesheet" href="/libs/bootstrap-3.2.0/css/bootstrap.min.css">
 </head>
-<body data-ng-app="MyApp">
+<body>
+
 	<div class="container">
 
 		<!-- MENU -->
@@ -91,76 +92,24 @@
 			</div><!-- /.navbar-collapse -->
 		</nav>
 
-		<div class="row" data-ng-controller="Keypass">
+		<div class="row">
 
 			<div class="col-sm-12">
-
 				<h1 id="page-title"><%= title %></h1>
-
-				<div>
-					<form action="/keyspass/create" method="post" accept-charset="utf-8">
-						<h5>
-							Add more user passes:
-						</h5>
-						Site: <input name="site">
-						<br />
-						Username: <input name="username">
-						<br />
-						Email: <input name="email">
-						<br />
-						Pass: <input name="pass"> 
-						<br />
-						<!--
-						Site: <input name="site">
-						<br />
-						Username: <input name="username">
-						<br />
-						Email: <input name="email">
-						<br />
-						Pass: <input name="pass"> 
-						<br />
-						-->
-						<input type="submit">
-					</form>
-				</div>
-
-				<div id="list">
-					<div class="item">
-						<table class="table">
-							<tr>
-								<th>
-									Sitename
-								</th>
-								<th>
-									Username
-								</th>
-								<th>
-									Email
-								</th>
-								<th>
-									Pass
-								</th>
-							</tr>
-							<% kp.forEach( function ( kp ){ %>
-									<tr>
-										<td>
-											<a class="update-link" href="/keyspass/edit/<%= kp._id %>" title="Update this kp item"><%= kp.site %></a>
-										</td>
-										<td>
-											<%= kp.username %>
-										</td>
-										<td>
-											<%= kp.email %>
-										</td>
-										<td>
-											<%= kp.pass %>
-										</td>
-									</tr>
-							<% }); %>
-						</table>
+				<form action="/keyspass/check" method="post" accept-charset="utf-8">
+					<div id="list">
+						<% sq.forEach( function ( sq ){ %>
+							<div class="item">
+								<a class="update-link" href="/keyspass/edit/<%= sq._id %>" title="Update this sa item">
+									<%= sq.question %>
+								</a>
+								&nbsp;
+								<input type="text" name="ans[<%= sq._id %>]">
+							</div>
+						<% }); %>
 					</div>
-				</div>
-
+					<input type="submit">
+				</form>
 			</div>
 
 		</div>
@@ -168,5 +117,7 @@
 	</div>
 	<script src="/javascripts/libs/jquery-1.9.1.min.js"></script>
 	<script src="/libs/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+	<script src="/javascripts/libs/angular.min.js"></script>
+	<script src="/javascripts/angular_javascript.js"></script>
 </body>
 </html>
